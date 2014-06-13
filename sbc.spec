@@ -5,7 +5,7 @@
 
 Name:		%{name}
 Version:	1.1
-Release:	5
+Release:	6
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
