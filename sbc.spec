@@ -4,12 +4,13 @@
 %define libnamedevel %mklibname -d %{name}
 
 Name:		%{name}
-Version:	1.1
-Release:	7
+Version:	1.2
+Release:	1
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
 Source0:	http://www.kernel.org/pub/linux/bluetooth/sbc-%{version}.tar.xz
+Patch0:		sbc-1.2-clang-build-flags.patch
 Url:		http://www.bluez.org/
 
 BuildRequires:	pkgconfig(glib-2.0)
@@ -38,9 +39,11 @@ Bluetooth SBC development files
 
 %prep
 %setup -q
+%apply_patches
+#sed -i 's!-fgcse-after-reload \\!!g' Makefile.*
 
 %build
-%configure2_5x --disable-static
+%configure --disable-static
 %make
 
 %install

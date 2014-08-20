@@ -1,0 +1,24 @@
+diff --git a/Makefile.am b/Makefile.am
+index 8eb687c..7cc7227 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -53,7 +53,6 @@ endif
+ 
+ AM_CFLAGS = @SNDFILE_CFLAGS@ -fvisibility=hidden \
+ 				-finline-functions \
+-				-fgcse-after-reload \
+ 				-funswitch-loops \
+ 				-funroll-loops
+ 
+diff --git a/Makefile.in b/Makefile.in
+index 6914933..9400c9f 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -356,7 +356,6 @@ sbc_libsbc_la_DEPENDENCIES = sbc/sbc.sym
+ @TESTER_TRUE@src_sbctester_LDADD = @SNDFILE_LIBS@ -lm
+ AM_CFLAGS = @SNDFILE_CFLAGS@ -fvisibility=hidden \
+ 				-finline-functions \
+-				-fgcse-after-reload \
+ 				-funswitch-loops \
+ 				-funroll-loops
+ 
