@@ -1,15 +1,14 @@
-%define name sbc
 %define major 1
 %define libname %mklibname %{name} %{major}
 %define libnamedevel %mklibname -d %{name}
 
-Name:		%{name}
-Version:	1.2
+Name:		sbc
+Version:	1.3
 Release:	1
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
-Source0:	http://www.kernel.org/pub/linux/bluetooth/sbc-%{version}.tar.xz
+Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.xz
 Patch0:		sbc-1.2-clang-build-flags.patch
 Url:		http://www.bluez.org/
 
