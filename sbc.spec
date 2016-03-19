@@ -4,7 +4,7 @@
 
 Name:		sbc
 Version:	1.3
-Release:	4
+Release:	5
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
