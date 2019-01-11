@@ -3,8 +3,8 @@
 %define libnamedevel %mklibname -d %{name}
 
 Name:		sbc
-Version:	1.3
-Release:	6
+Version:	1.4
+Release:	1
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
