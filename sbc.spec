@@ -38,7 +38,7 @@ Bluetooth SBC development files
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 #sed -i 's!-fgcse-after-reload \\!!g' Makefile.*
 
 %build
