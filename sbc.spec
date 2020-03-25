@@ -4,7 +4,7 @@
 
 Name:		sbc
 Version:	1.4
-Release:	1
+Release:	2
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
@@ -14,18 +14,18 @@ Url:		http://www.bluez.org/
 
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	dbus-devel
-BuildRequires:	bluez-devel
+BuildRequires:	pkgconfig(bluez)
 BuildRequires:	pkgconfig(sndfile)
 
 %description
-Bluetooth SBC utilities
+Bluetooth SBC utilities.
 
 %package -n %{libname}
 Summary:	Bluetooth SBC library
 Group:		System/Libraries
 
 %description -n %{libname}
-Bluetooth SBC library
+Bluetooth SBC library.
 
 %package -n %{libnamedevel}
 Summary:	Bluetooth SBC development files
@@ -34,7 +34,7 @@ Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{libnamedevel}
-Bluetooth SBC development files
+Bluetooth SBC development files.
 
 %prep
 %setup -q
@@ -43,10 +43,10 @@ Bluetooth SBC development files
 
 %build
 %configure --disable-static
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 rm -f %{buildroot}%{_libdir}/*.la
 
