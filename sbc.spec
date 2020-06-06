@@ -1,10 +1,17 @@
+# sbc is used by pulseaudio, which is used by wine
+%ifarch %{x86_64}
+%bcond_without compat32
+%endif
+
 %define major 1
 %define libname %mklibname %{name} %{major}
 %define libnamedevel %mklibname -d %{name}
+%define lib32name %mklib32name %{name} %{major}
+%define lib32namedevel %mklib32name -d %{name}
 
 Name:		sbc
 Version:	1.4
-Release:	2
+Release:	3
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
@@ -16,6 +23,12 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	dbus-devel
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:	pkgconfig(sndfile)
+%if %{with compat32}
+BuildRequires:	devel(libglib-2.0)
+BuildRequires:	devel(libdbus-1)
+BuildRequires:	devel(libbluetooth)
+BuildRequires:	devel(libsndfile)
+%endif
 
 %description
 Bluetooth SBC utilities.
@@ -36,19 +49,51 @@ Provides:	%{name}-devel = %{version}-%{release}
 %description -n %{libnamedevel}
 Bluetooth SBC development files.
 
+%if %{with compat32}
+%package -n %{lib32name}
+Summary:	Bluetooth SBC library (32-bit)
+Group:		System/Libraries
+
+%description -n %{lib32name}
+Bluetooth SBC library.
+
+%package -n %{lib32namedevel}
+Summary:	Bluetooth SBC development files (32-bit)
+Group:		Development/C
+Requires:	%{libnamedevel} = %{version}-%{release}
+Requires:	%{lib32name} = %{version}-%{release}
+
+%description -n %{lib32namedevel}
+Bluetooth SBC development files.
+%endif
+
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 #sed -i 's!-fgcse-after-reload \\!!g' Makefile.*
+export CONFIGURE_TOP="$(pwd)"
+%if %{with compat32}
+mkdir build32
+cd build32
+%configure32
+cd ..
+%endif
+
+mkdir build
+cd build
+%configure
+cd ..
 
 %build
-%configure --disable-static
-%make_build
+%if %{with compat32}
+%make_build -C build32
+%endif
+%make_build -C build
 
 %install
-%make_install
-
-rm -f %{buildroot}%{_libdir}/*.la
+%if %{with compat32}
+%make_install -C build32
+%endif
+%make_install -C build
 
 %files
 %{_bindir}/sbcdec
@@ -62,3 +107,12 @@ rm -f %{buildroot}%{_libdir}/*.la
 %{_includedir}/%{name}
 %{_libdir}/libsbc.so
 %{_libdir}/pkgconfig/%{name}.pc
+
+%if %{with compat32}
+%files -n %{lib32name}
+%{_prefix}/lib/libsbc.so.%{major}*
+
+%files -n %{lib32namedevel}
+%{_prefix}/lib/libsbc.so
+%{_prefix}/lib/pkgconfig/%{name}.pc
+%endif
