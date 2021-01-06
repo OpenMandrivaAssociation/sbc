@@ -17,6 +17,7 @@ Group:		Communications
 License:	GPLv2+
 Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.xz
 Patch0:		sbc-1.2-clang-build-flags.patch
+Patch1:		sbc-1.5-non-x86.patch
 Url:		http://www.bluez.org/
 
 BuildRequires:	pkgconfig(glib-2.0)
