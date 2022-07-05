@@ -10,18 +10,17 @@
 %define lib32namedevel %mklib32name -d %{name}
 
 Name:		sbc
-Version:	1.5
+Version:	2.0
 Release:	1
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
+Url:		http://www.bluez.org/
 Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.xz
 Patch0:		sbc-1.2-clang-build-flags.patch
-Patch1:		sbc-1.5-non-x86.patch
-Url:		http://www.bluez.org/
 
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	dbus-devel
+BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:	pkgconfig(sndfile)
 %if %{with compat32}
