@@ -15,7 +15,7 @@ Release:	2
 Summary:	Bluetooth SBC utilities
 Group:		Communications
 License:	GPLv2+
-Url:		http://www.bluez.org/
+Url:		https://www.bluez.org/
 Source0:	http://www.kernel.org/pub/linux/bluetooth/%{name}-%{version}.tar.xz
 Patch0:		sbc-1.2-clang-build-flags.patch
 
