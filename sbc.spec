@@ -10,7 +10,7 @@
 %define lib32namedevel %mklib32name -d %{name}
 
 Name:		sbc
-Version:	2.1
+Version:	2.2
 Release:	1
 Summary:	Bluetooth SBC utilities
 Group:		Communications
